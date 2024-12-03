@@ -20,14 +20,15 @@ import Mooc.Todo
 ------------------------------------------------------------------------------
 -- Ex 1: define variables one and two. They should have type Int and
 -- values 1 and 2, respectively.
-
-
+one, two ::Int
+one = 1
+two = 2
 ------------------------------------------------------------------------------
 -- Ex 2: define the function double of type Integer->Integer. Double
 -- should take one argument and return it multiplied by two.
 
 double :: Integer -> Integer
-double x = todo
+double x = x * 2
 
 ------------------------------------------------------------------------------
 -- Ex 3: define the function quadruple that uses the function double
@@ -35,7 +36,7 @@ double x = todo
 -- four.
 
 quadruple :: Integer -> Integer
-quadruple x = todo
+quadruple x = double x * 2
 
 ------------------------------------------------------------------------------
 -- Ex 4: define the function distance. It should take four arguments of
@@ -50,8 +51,8 @@ quadruple x = todo
 -- Examples:
 --   distance 0 0 1 1  ==>  1.4142135...
 --   distance 1 1 4 5  ==>  5.0
-
-distance = todo
+distance :: Double -> Double -> Double -> Double -> Double
+distance x1, y1, x2, y2 = sqrt((x2-x1)^2 + (y2-y1)^2)
 
 ------------------------------------------------------------------------------
 -- Ex 5: define the function eeny that returns "eeny" for even inputs
@@ -60,17 +61,20 @@ distance = todo
 -- Ps. have a look at the built in function "even"
 
 eeny :: Integer -> String
-eeny = todo
+eeny x = if even x 
+         then "eeny" 
+         else "meeny"
 
 ------------------------------------------------------------------------------
 -- Ex 6: here's the function checkPassword from the course material.
 -- Modify it so that it accepts two passwords, "swordfish" and
 -- "mellon".
 
-checkPassword :: String -> String
-checkPassword password = if password == "swordfish"
-                         then "You're in."
-                         else "ACCESS DENIED!"
+checkPassword :: String -> String -> String
+checkPassword password_1 password_2 = if password == "swordfish" 
+                                        && password_2 == "mellon"
+                                      then "You're in."
+                                      else "ACCESS DENIED!"
 
 ------------------------------------------------------------------------------
 -- Ex 7: A postal service prices packages the following way.
@@ -82,7 +86,12 @@ checkPassword password = if password == "swordfish"
 -- in grams, and returns the cost in credits.
 
 postagePrice :: Int -> Int
-postagePrice = todo
+postagePrice weight =
+  if weight <= 500
+    then 250
+    else if weight <= 5000
+      then 300 + (weight - 500)
+      else 6000
 
 ------------------------------------------------------------------------------
 -- Ex 8: define a function isZero that returns True if it is given an
